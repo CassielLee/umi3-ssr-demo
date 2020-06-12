@@ -1,7 +1,7 @@
 import { IGetInitialProps } from 'umi';
 import React, { Component } from 'react';
 import Swiper from 'swiper';
-import withLayout from '@/layouts/Layout';
+import Layout from '@/layouts/Layout/layout';
 import BannerItem from '@/components/BannerItem';
 import bannerList from '@/common/bannerListConfig';
 
@@ -14,7 +14,7 @@ interface IndexPageState {
   [propName: string]: any;
 }
 
-class Index extends Component<IndexPageProps, IndexPageState> {
+export default class Index extends Component<IndexPageProps, IndexPageState> {
   static getInitialProps = (async () => {
     return Promise.resolve({
       msg: 'test ssr !',
@@ -49,73 +49,73 @@ class Index extends Component<IndexPageProps, IndexPageState> {
     console.log('========props=========', this.props.msg);
     return (
       <>
-        <div className="sys-wrap indexpro-ban">
-          <div className="index-ban-swiper swiper-container">
-            <ul className="swiper-wrapper">
-              {bannerList.length > 0 &&
-                bannerList.map((bannerItem, index) => {
-                  return (
-                    <BannerItem
-                      bannerItem={bannerItem}
-                      isPc={true}
-                      key={index}
-                    ></BannerItem>
-                  );
-                })}
-            </ul>
-            {bannerList.length > 1 && (
-              <>
-                <div className="swiper-pagination"></div>
-                <div className="swiper-button-prev swiper-button-white"></div>
-                <div className="swiper-button-next swiper-button-white"></div>
-              </>
-            )}
+        <Layout>
+          <div className="sys-wrap indexpro-ban">
+            <div className="index-ban-swiper swiper-container">
+              <ul className="swiper-wrapper">
+                {bannerList.length > 0 &&
+                  bannerList.map((bannerItem, index) => {
+                    return (
+                      <BannerItem
+                        bannerItem={bannerItem}
+                        isPc={true}
+                        key={index}
+                      ></BannerItem>
+                    );
+                  })}
+              </ul>
+              {bannerList.length > 1 && (
+                <>
+                  <div className="swiper-pagination"></div>
+                  <div className="swiper-button-prev swiper-button-white"></div>
+                  <div className="swiper-button-next swiper-button-white"></div>
+                </>
+              )}
+            </div>
+            {/* <p>{this.props.data.msg}</p> */}
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
+            <p>文案</p>
           </div>
-          {/* <p>{this.props.data.msg}</p> */}
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-          <p>文案</p>
-        </div>
+        </Layout>
       </>
     );
   }
 }
-
-export default withLayout(Index);
