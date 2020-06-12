@@ -1,4 +1,4 @@
-import { IGetInitialProps } from 'umi';
+import { IGetInitialProps, connect } from 'umi';
 import React, { Component } from 'react';
 import Swiper from 'swiper';
 import Layout from '@/layouts/Layout/layout';
@@ -14,11 +14,14 @@ interface IndexPageState {
   [propName: string]: any;
 }
 
+@connect(({ user }: any) => ({ user }))
 export default class Index extends Component<IndexPageProps, IndexPageState> {
-  static getInitialProps = (async () => {
-    return Promise.resolve({
-      msg: 'test ssr !',
+  static getInitialProps = (async (ctx: any) => {
+    const { store } = ctx;
+    await store.dispatch({
+      type: 'user/getSomeData',
     });
+    return store.getState();
   }) as IGetInitialProps;
 
   componentDidMount() {
@@ -46,7 +49,8 @@ export default class Index extends Component<IndexPageProps, IndexPageState> {
   }
 
   render() {
-    console.log('========props=========', this.props.msg);
+    const { someData } = this.props.user;
+    console.log(someData);
     return (
       <>
         <Layout>
@@ -72,7 +76,16 @@ export default class Index extends Component<IndexPageProps, IndexPageState> {
                 </>
               )}
             </div>
-            {/* <p>{this.props.data.msg}</p> */}
+            <h2>getInitialProps获取的数据：</h2>
+            <ul>
+              {someData.map((item: any, index: number) => (
+                <li key={index}>
+                  <h3>{item.text}</h3>
+                </li>
+              ))}
+            </ul>
+            <br></br>
+            <h2>页面文案：</h2>
             <p>文案</p>
             <p>文案</p>
             <p>文案</p>

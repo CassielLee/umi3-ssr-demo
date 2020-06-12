@@ -12,15 +12,31 @@ export default {
   namespace: 'user',
 
   state: {
-    loginState: false,
-    addressList: [],
-    loginPop: {
-      show: false,
-      callback: null,
+    someData: [],
+  },
+
+  effects: {
+    *getSomeData({ payload }: any, { call, put }: any) {
+      yield put({
+        type: 'saveData',
+        payload: {
+          someData: [
+            { text: 'test1' },
+            { text: 'test2' },
+            { text: 'test3' },
+            { text: 'test4' },
+          ],
+        },
+      });
     },
   },
 
-  effects: {},
-
-  reducers: {},
+  reducers: {
+    saveData(state: any, { payload }: any) {
+      return {
+        ...state,
+        ...payload,
+      };
+    },
+  },
 };

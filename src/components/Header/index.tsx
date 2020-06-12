@@ -111,7 +111,7 @@ class Header extends Component<HeaderProps, HeaderState> {
               <a href="/">首页</a>
             </li>
             <li>
-              <a href="/">ERROR</a>
+              <a href="/error">ERROR</a>
             </li>
           </ul>
           <input
